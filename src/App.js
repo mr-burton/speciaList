@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import ListSpecialist from './components/ListSpecialist';
 import SearchSpecialist from './components/SearchSpecialist';
 
 class App extends Component {
@@ -10,12 +9,13 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="text-center text-white">SpeciaList</h1>
-        <div className="specialist-input">  
+        <p className="text-center text-white">Search For a Specialist Nearby</p> 
+        <div>  
           <SearchSpecialist />
         </div>  
-        <div className="specialist-list">
+        {/* <div className="specialist-list">
           <ListSpecialist />
-        </div>  
+        </div>   */}
       </div>
     );
   }

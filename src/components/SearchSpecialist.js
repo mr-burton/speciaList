@@ -4,7 +4,7 @@ import React, {
 import axios from 'axios';
 import header from './header';
 import ListSpecialist from './ListSpecialist';
-
+import '../App.css';
 
 class SearchSpecialist extends Component {
   constructor(props) {
@@ -26,20 +26,19 @@ class SearchSpecialist extends Component {
   
   handleSubmit = event => {
     event.preventDefault();
-    //componentDidMount() {
       //console.log('this state search', this.state.search);
       const searchTerm = this.state.search;
       // const bodyParameters = {
       //   key: "value"
       // };
       axios
-        .get(`https://api.careeronestop.org/v1/occupation/${header.userId}/${searchTerm}/Y/0/8`, header.config)
+        .get(`https://api.careeronestop.org/v1/occupation/${header.userId}/${searchTerm}/N/0/5`, header.config)
         .then(response => {
           //console.log('response', response)
           this.setState({ specialists: response.data.OccupationList });
         })
         // .then(() => 
-        //   console.log('state', this.state.specialists)
+        //   console.log('this.state.specialists', this.state.specialists)
         // )
         .catch(err => console.log(err));
   }
@@ -47,17 +46,21 @@ class SearchSpecialist extends Component {
   render() { 
     return (
       <div>
-        <form onSubmit={(event) => this.handleSubmit(event)}>
-          <div className="container">
-            <div className="col">
-              <input type="text" name="search" className="form-control" placeholder="keywords" onChange={(e) => this.handleChange(e)}/>
+        <div className="specialist-input">
+          <form onSubmit={(event) => this.handleSubmit(event)}>
+            <div className="container">
+              <div className="col">
+                <input type="text" name="search" className="form-control" placeholder="keywords" onChange={(e) => this.handleChange(e)}/>
+              </div>
+              <div className="col">
+                <button className="btn btn-primary px-4 mt-2 float-left" type="submit"> Search </button>
+              </div>
             </div>
-            <div className="col">
-              <button className="btn btn-primary px-4 mt-2 float-left" type="submit"> Search </button>
-            </div>
-          </div>
-        </form>
-        <ListSpecialist specialists={this.state.specialists}/>
+          </form>
+        </div>
+        <div className="specialist-list">
+          <ListSpecialist specialists={this.state.specialists} />
+        </div>
       </div>
     )
   }
