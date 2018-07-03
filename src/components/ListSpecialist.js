@@ -5,15 +5,21 @@ import React, {
 class ListSpecialist extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+
+    }
+  }
+
+  handleYelp = (e) => {
+    const url = `https://www.yelp.com/search?find_desc=${e}`;
+    window.location.href = url;
   }
 
   render() { 
     console.log('this props', this.props.specialists);
     return (
       <div className="container">
-        {this.props.specialists ? 
-        
+        {this.props.specialists ?         
           this.props.specialists.map(specialist => 
           <div className="card mt-3">
             <div className="card-body">
@@ -22,11 +28,13 @@ class ListSpecialist extends Component {
                 <li className="list-group-item"> Description: {specialist.OccupationDescription}</li>
               </ul>
               <button 
-                className="btn btn-outline-success mt-2" 
+                onClick={() => this.handleYelp(specialist.OnetTitle)}
+                className="btn btn-outline-danger mt-2" 
                 type="button" >
                 Search on Yelp
               </button>
-              <button 
+              <button
+                // onClick={() => this.handleYelp(event)}
                 className="btn btn-outline-info mt-2 ml-2" 
                 type="button" >
                 Find in Google Maps
